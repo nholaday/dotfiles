@@ -224,25 +224,7 @@ Plug 'kien/ctrlp.vim'
 call plug#end()
 
 """""Ctrl-p ignore .gitignore files""""""
-" Single VCS, listing command does not list untracked files:
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files']
-let g:ctrlp_user_command = ['.hg', 'hg --cwd %s locate -I .']
-
-" Multiple VCS's:
-let g:ctrlp_user_command = {
-  \ 'types': {
-    \ 1: ['.git', 'cd %s && git ls-files'],
-    \ 2: ['.hg', 'hg --cwd %s locate -I .'],
-    \ },
-  \ 'fallback': 'find %s -type f'
-  \ }
-
-" Single VCS, listing command lists untracked files (slower):
-let g:ctrlp_user_command =
-  \ ['.git', 'cd %s && git ls-files -co --exclude-standard']
-
-let g:ctrlp_user_command =
-  \ ['.hg', 'hg --cwd %s status -numac -I . $(hg root)'] " MacOSX/Linux
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 " Enable mouse
 " set mouse=a
